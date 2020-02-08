@@ -1,16 +1,13 @@
 const express = require('express');
 
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
 const app = express();
 
-app.use((req, res, next) => {
-  console.log('In the middleware!');
-  next();
-});
+app.use(express.urlencoded({extended: false}));
 
-app.use((req, res, next) => {
-  console.log('In the another middleware!');
-  res.send('<h1>Hello from Express</h1>');
-  next();
-});
+app.use(adminRoutes);
+app.use(shopRoutes);
 
 app.listen(3000);
